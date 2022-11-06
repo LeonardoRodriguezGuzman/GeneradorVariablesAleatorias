@@ -8,25 +8,57 @@ namespace GeneradorVariablesAleatorias.Metodos.TransformadaInversa
 {
     internal class Bernoulli
     {
-        
-        public static double[] GenerarXi(int probabilidad, int cantidad)
+        private int cantidad;
+        private int probabilidad;
+        private double pX;
+        private double[] Ri;
+        private double[] Xi;
+        private string[] evento;
+
+        public Bernoulli(int cantidad, int probabilidad)
         {
-            double[] Ri = Uniforme.GenerarRi(cantidad);
-            double[] Xi = new double[cantidad];
-            double pX = 1 - probabilidad;
+            setCantidad(cantidad);
+            setProbabilidad(probabilidad);
+            setpX();
+            setRi();
+            setXi();
+            setEvento();
+        }
+
+        public void setCantidad(int cantidad){
+            this.cantidad = cantidad;
+        }
+        public void setProbabilidad(int probabilidad) {
+            this.probabilidad = probabilidad;
+        }
+        public void setpX() {
+            this.pX = 1 - probabilidad;
+        }
+        public void setRi()
+        {
+            Ri = new double[cantidad];
             for (int i = 0; i < cantidad; i++)
             {
-                if (Ri[i]<=pX) {
+                Ri[i] = Math.Round((new Random()).NextDouble(), 4);
+            }
+        }
+        public void setXi()
+        {
+            Xi = new double[cantidad];
+            for (int i = 0; i < cantidad; i++)
+            {
+                if (Ri[i] <= pX)
+                {
                     Xi[i] = 0;
                 }
-                else { Xi[i] = 1; }
+                else { Xi[i] = 1;
+                }
 
             }
-            return Xi;
         }
-        public static string[] Evento(int probabilidad, int cantidad) {
-            string[] evento = new string[cantidad];
-            double[] Xi = GenerarXi(probabilidad, cantidad);
+        
+        public void setEvento() {
+            evento = new string[cantidad];
             for (int i =0;i<cantidad; i++) {
                 if (Xi[i] == 0)
                 {
@@ -36,6 +68,32 @@ namespace GeneradorVariablesAleatorias.Metodos.TransformadaInversa
                     evento[i] = "Falla";
                 }
             }
+        }
+
+        public int getCantidad() {
+            return cantidad;
+        }
+        public int getProbabilidad()
+        {
+            return probabilidad;
+        }
+        public double getpX()
+        {
+            return pX;
+        }
+
+        public double[] getRi()
+        {
+            return Ri;
+        }
+
+        public double[] getXi()
+        {
+            return Xi;
+        }
+
+        public string[] getEvento()
+        {
             return evento;
         }
     }

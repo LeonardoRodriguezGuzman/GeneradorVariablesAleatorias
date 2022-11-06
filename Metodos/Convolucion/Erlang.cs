@@ -9,44 +9,107 @@ namespace GeneradorVariablesAleatorias.Metodos.Convolucion
 {
     internal class Erlang
     {
-        public static double[] ri1(int cantidad) {
-            return Uniforme.GenerarRi(cantidad);
+        private int cantidad;
+        private double media;
+        private int k;
+        private double[] ri1;
+        private double[] ri2;
+        private double[] r1;
+        private double[] r2;
+        private double[] tiempo;
 
+        public Erlang(int cantidad, double media,int k) {
+            setCantidad(cantidad);
+            setMedia(media);
+            setK(k);
+            setRi1(cantidad);
+            setRi2(cantidad);
+            setR1(cantidad);
+            setR2(cantidad);
+            setTiempo();
         }
-        public static double[] ri2(int cantidad) {
-            return Uniforme.GenerarRi(cantidad);
-        }
-        public static double[] r1(int cantidad) {
-            double[] r1=ri1(cantidad);
-            double[] ri = new double[cantidad];
+        public double[] generarRi(int cantidad) {
+            double[] Ri = new double[cantidad];
             for (int i = 0; i < cantidad; i++)
             {
-                ri[i] = 1 - r1[i];
+                Ri[i] = Math.Round((new Random()).NextDouble(), 4);
             }
-            return ri;
+            return Ri;
+        }
+        public void setMedia(double media)
+        {
+            this.media = media;
         }
 
-        public static double[] r2(int cantidad)
+        public void setK(int k)
         {
-            double[] r1 = ri1(cantidad);
-            double[] ri = new double[cantidad];
+            this.k = k;
+        }
+        public void setRi1() {
+            ri1 = generarRi(cantidad);
+
+        }
+        public void setRi2() {
+            ri2=generarRi(cantidad);
+        }
+        public void setR1(int cantidad) {
+            r1 = new double[cantidad];
             for (int i = 0; i < cantidad; i++)
             {
-                ri[i] = 1 - r1[i];
+                r1[i] = 1 - ri1[i];
             }
-            return ri;
         }
 
-        public static double[] tiempo(int media, int k, int cantidad) 
+        public void setR2(int cantidad)
         {
-            double[] tiempo = new double[cantidad];
-            double[] ri1 = r1(cantidad);
-            double[] ri2 = r2(cantidad);
+            r2 = new double[cantidad];
+            for (int i = 0; i < cantidad; i++)
+            {
+                r2[i] = 1 - ri2[i];
+            }
+        }
+
+        public void setTiempo() 
+        {
+            tiempo = new double[cantidad];
             for (int i = 0; i<cantidad; i++)
             {
                 tiempo[i] = (media / k) * Math.Log(ri1[i] * ri2[i]);
             }
+        }
+        public int setCantidad()
+        {
+            return cantidad;
+        }
+        public double getMedia()
+        {
+            return media;
+        }
+        public int getK()
+        {
+            return k;
+        }
+        public double[] getRi1()
+        {
+            return ri1;
+        }
+        public double[] getRi2()
+        {
+            return ri2;
+        }
+        public double[] getR1()
+        {
+            return r1;
+        }
+        public double[] getR2()
+        {
+            return r2;
+        }
+        public double[] getTiempo()
+        {
             return tiempo;
         }
+
+
     }
 }

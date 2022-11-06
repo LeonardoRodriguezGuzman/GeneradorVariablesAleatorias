@@ -8,15 +8,60 @@ namespace GeneradorVariablesAleatorias.Metodos.TransformadaInversa
 {
     internal class Exponencial
     {
+        private int media;
+        private int cantidad;
+        private double[] Ri;
+        private double[] Xi;
 
-        public static double[] GenerarXi(int media, int cantidad) {
-            double[] Ri= Uniforme.GenerarRi(cantidad);
-            double[] Xi = new double[cantidad];
+        public Exponencial(int media, int cantidad){
+            setMedia(media);
+            setCantidad(cantidad);
+            setRi();
+            setXi();
+            
+        }
+        public void setMedia(int media) {
+        this.media = media;
+    }
+        public void setCantidad(int cantidad) {
+            this.cantidad = cantidad;
+        }
+
+        public void setRi()
+        {
+            Ri = new double[cantidad];
+            for (int i = 0; i < cantidad; i++)
+            {
+                Ri[i] = Math.Round((new Random()).NextDouble(), 4);
+            }
+        }
+
+        public void setXi() {
+            Xi = new double[cantidad];
             for (int i = 0; i < cantidad; i++)
             {
                 Xi[i] = -media * Math.Log(1 - Ri[i]);
             }
-             return Xi;
+        }
+
+        public int getMedia()
+        {
+            return media;
+        }
+
+        public int getCantidad()
+        {
+            return cantidad;
+        }
+
+        public double[] getRi()
+        {
+            return Ri;
+        }
+
+        public double[] getXi()
+        {
+            return Xi;
         }
     }
 }

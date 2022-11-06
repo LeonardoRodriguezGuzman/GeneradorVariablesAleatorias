@@ -11,24 +11,57 @@ namespace GeneradorVariablesAleatorias.Metodos.TransformadaInversa
     internal class Uniforme
     {
 
-     
-        public static double[] GenerarRi(int cantidad) {
-            double[] Ri = new double[cantidad];
-            for (int i = 0;i<cantidad;i++) { 
-                Ri[i] = Math.Round((new Random()).NextDouble(), 4);
-            }
-            return Ri;
+        private int cantidad;
+        private double[] Ri;
+        private double[] Xi;
+        private int a;
+        private int b;
+
+        public Uniforme(int cantidad, int a, int b) {
+            setCantidad(cantidad);
+            setRi(cantidad);
+            setA(a);
+            setB(b);
         }
 
+        public void setCantidad(int cantidad) {
+            this.cantidad = cantidad;
+        }
 
-        public static double[] GenerarXi(int a, int b, int cantidad)
+        public void setA(int a)
         {
-            double[] Ri = GenerarRi(cantidad);
-            double[] Xi = new double[cantidad];
+            this.a = a;
+        }
+
+        public void setB(int b)
+        {
+            this.b = b;
+        }
+        
+
+        public void setRi(int cantidad)
+        {
+            Ri = new double[cantidad];
+            for (int i = 0; i < cantidad; i++)
+            {
+                Ri[i] = Math.Round((new Random()).NextDouble(), 4);
+            }
+        }
+
+        public  void setXi()
+        {   
+            Xi = new double[cantidad];
             for (int i=0; i<cantidad; i++) {
                 Xi[i] = a + (b - a) * Ri[i];
             }
-            return Xi;
         }
+
+
+        public int getCantidad() { return cantidad; }
+        public int getA() { return a; }
+        public int getB() { return b; }
+        public int getRi() { return Ri; }
+        public int getXi() { return Xi; }
+
     }
 }

@@ -53,12 +53,15 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="Metodos\Convolucion\Erlang.cs" />
     <Compile Include="Metodos\TransformadaInversa\Bernoulli.cs" />
     <Compile Include="Metodos\TransformadaInversa\Uniforme.cs" />
     <Compile Include="Metodos\TransformadaInversa\TransformadaInversa.cs" />
     <Compile Include="Metodos\TransformadaInversa\Poisson.cs" />
     <Compile Include="Metodos\TransformadaInversa\Exponencial.cs" />
+=======
+>>>>>>> 4559feedf498f1a3a46c45c0229602acce6ecb43
 =======
 >>>>>>> 4559feedf498f1a3a46c45c0229602acce6ecb43
     <Compile Include="Program.cs" />
@@ -86,10 +89,13 @@
     <None Include="App.config" />
   </ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <ItemGroup>
     <Folder Include="Metodos\AceptacionYRechazo\" />
     <Folder Include="Metodos\Composicion\" />
   </ItemGroup>
+=======
+>>>>>>> 4559feedf498f1a3a46c45c0229602acce6ecb43
 =======
 >>>>>>> 4559feedf498f1a3a46c45c0229602acce6ecb43
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
